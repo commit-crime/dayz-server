@@ -1,0 +1,14 @@
+# Steam Workshop mods to install and load. One per line:
+#   <workshop_id> [folder_name] [server]
+#
+# workshop_id   - number from the mod's workshop page URL
+# folder_name   - optional, loaded as @<name> (defaults to the id)
+# server        - optional flag: load via -serverMod= (server-side only mods
+#                 like COT; clients don't need them)
+#
+# Requires a Steam account that owns DayZ (STEAM_USERNAME/STEAM_PASSWORD in .env).
+# After adding an entry, run `make update` (or restart with DAYZ_AUTO_UPDATE=1).
+#
+# Examples:
+# 1559212036 cf          # Community Framework
+# 1564026768 cot server  # Community Online Tools (server-side only)

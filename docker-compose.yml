@@ -1,0 +1,25 @@
+# For Docker hosts. On this machine (Podman), use `make up` instead.
+services:
+  dayz:
+    build:
+      context: .
+      dockerfile: Containerfile
+    image: localhost/dayz-server:latest
+    container_name: dayz-server
+    env_file: .env
+    ports:
+      - "2302-2306:2302-2306/udp"   # game traffic
+      - "27016:27016/udp"           # Steam server browser query
+    volumes:
+      - dayz-files:/opt/dayz/server
+      - dayz-profiles:/opt/dayz/profiles
+      - dayz-home:/home/steam   # steamcmd session/Guard cache + workshop content
+      - ./config:/opt/dayz/config:ro
+      - ./mods.txt:/opt/dayz/mods.txt:ro
+    restart: unless-stopped
+    stop_grace_period: 60s
+
+volumes:
+  dayz-files:
+  dayz-profiles:
+  dayz-home:
